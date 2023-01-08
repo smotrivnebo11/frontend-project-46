@@ -1,0 +1,30 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "2nd hexlet project - generate differecies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smotrivnebo11/frontend-project-46.git"
+  },
+  "keywords": [
+    "generate",
+    "differecies",
+    "hexlet"
+  ],
+  "author": "Elena Poltanova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smotrivnebo11/frontend-project-46/issues"
+  },
+  "type": "module",
+  "homepage": "https://github.com/smotrivnebo11/frontend-project-46#readme",
+  "dependencies": {
+    "commander": "^9.4.1",
+    "eslint": "^8.30.0",
+    "prettier": "^2.8.1"
+  }
+}
