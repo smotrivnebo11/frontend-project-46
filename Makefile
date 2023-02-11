@@ -3,3 +3,5 @@ install:
 
 gendiff -h:
 	node bin/gendiff.js -h
+
+.PHONY test
