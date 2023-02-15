@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">5.26% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/19</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">5.26% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/19</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,58 +95,58 @@
 <a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import _ from 'lodash';
 &nbsp;
-const compare = <span class="fstat-no" title="function not covered" >(o</span>bj1, obj2) =&gt; {
-  const keys1 = <span class="cstat-no" title="statement not covered" >_.keys(obj1);</span>
-  const keys2 = <span class="cstat-no" title="statement not covered" >_.keys(obj2);</span>
-  const union = <span class="cstat-no" title="statement not covered" >_.union(keys1, keys2);</span>
-  const allKeys = <span class="cstat-no" title="statement not covered" >_.sortBy(union);</span>
+const compare = (obj1, obj2) =&gt; {
+  const keys1 = _.keys(obj1);
+  const keys2 = _.keys(obj2);
+  const union = _.union(keys1, keys2);
+  const allKeys = _.sortBy(union);
 &nbsp;
-  const result = <span class="cstat-no" title="statement not covered" >allKeys.reduce(<span class="fstat-no" title="function not covered" >(a</span>cc, key) =&gt; {</span>
-    const plus = <span class="cstat-no" title="statement not covered" >`+ ${key}`;</span>
-    const minus = <span class="cstat-no" title="statement not covered" >`- ${key}`;</span>
-    const common = <span class="cstat-no" title="statement not covered" >`  ${key}`;</span>
+  const result = allKeys.reduce((acc, key) =&gt; {
+    const plus = `+ ${key}`;
+    const minus = `- ${key}`;
+    const common = `  ${key}`;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!_.has(obj1, key)) {</span>
-<span class="cstat-no" title="statement not covered" >      acc.push(`  ${plus}: ${obj2[key]}`);</span>
-    } else <span class="cstat-no" title="statement not covered" >if (!_.has(obj2, key)) {</span>
-<span class="cstat-no" title="statement not covered" >      acc.push(`  ${minus}: ${obj1[key]}`);</span>
-    } else <span class="cstat-no" title="statement not covered" >if (obj1[key] !== obj2[key]) {</span>
-<span class="cstat-no" title="statement not covered" >      acc.push(`  ${minus}: ${obj1[key]}`);</span>
-<span class="cstat-no" title="statement not covered" >      acc.push(`  ${plus}: ${obj2[key]}`);</span>
+    if (!_.has(obj1, key)) {
+      acc.push(`  ${plus}: ${obj2[key]}`);
+    } else if (!_.has(obj2, key)) {
+      acc.push(`  ${minus}: ${obj1[key]}`);
+    } else if (obj1[key] !== obj2[key]) {
+      acc.push(`  ${minus}: ${obj1[key]}`);
+      acc.push(`  ${plus}: ${obj2[key]}`);
     } else {
-<span class="cstat-no" title="statement not covered" >      acc.push(`  ${common}: ${obj1[key]}`);</span>
+      acc.push(`  ${common}: ${obj1[key]}`);
     }
-<span class="cstat-no" title="statement not covered" >    return acc;</span>
+    return acc;
   }, []).join('\n');
-<span class="cstat-no" title="statement not covered" >  return `{\n${result}\n}`;</span>
+  return `{\n${result}\n}`;
 };
 &nbsp;
 export default compare;
@@ -157,7 +157,7 @@ export default compare;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-15T07:41:29.779Z
+                at 2023-02-15T16:12:07.192Z
             </div>
         <script src="prettify.js"></script>
         <script>
