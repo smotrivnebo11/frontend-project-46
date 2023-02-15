@@ -4,7 +4,7 @@
   "description": "2nd hexlet project - generate differecies",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --bail --coverage"
   },
   "bin": {
     "gendiff": "bin/gendiff.js"
