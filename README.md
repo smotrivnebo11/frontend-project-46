@@ -8,4 +8,6 @@
 [![Node CI](https://github.com/smotrivnebo11/frontend-project-46/actions/workflows/node.js.yml/badge.svg)](https://github.com/smotrivnebo11/frontend-project-46/actions/workflows/node.js.yml)
 
 
-[![asciicast](https://asciinema.org/a/560051.svg)](https://asciinema.org/a/560051)
+[![asciicast](https://asciinema.org/a/560381.svg)](https://asciinema.org/a/560381)
+
+[![asciicast](https://asciinema.org/a/560384.svg)](https://asciinema.org/a/560384)
