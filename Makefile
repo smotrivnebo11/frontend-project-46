@@ -12,11 +12,4 @@ lint:
 
 test:
 	npm test
-
-test-watch:
-	npx jest --watch
-
-test-coverage:
-	npx jest --bail --coverage --coverageProvider=v8
-
-.PHONY: test
+	
