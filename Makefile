@@ -11,6 +11,12 @@ lint:
 	npx eslint .
 
 test:
-	npm test
+	npx jest
+
+test-watch:
+	npx jest --watch
+
+test-coverage:
+	npx jest --bail --coverage --coverageProvider=v8
 
 .PHONY: test
