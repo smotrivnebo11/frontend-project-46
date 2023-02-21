@@ -3,7 +3,7 @@ import path from 'path';
 import compare from './compare.js';
 import parse from './parse.js';
 
-const genDiff = (filepath1, filepath2) => {
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const file1content = fs.readFileSync(filepath1, 'utf-8');
   const file2content = fs.readFileSync(filepath2, 'utf-8');
   // console.log(file1content);

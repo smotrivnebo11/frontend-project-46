@@ -1,29 +1,25 @@
 import _ from 'lodash';
 
 const compare = (obj1, obj2) => {
-  const keys1 = _.keys(obj1);
-  const keys2 = _.keys(obj2);
-  const union = _.union(keys1, keys2);
-  const allKeys = _.sortBy(union);
+  const allKeys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
 
-  const result = allKeys.reduce((acc, key) => {
-    const plus = `+ ${key}`;
-    const minus = `- ${key}`;
-    const common = `  ${key}`;
-
-    if (!_.has(obj1, key)) {
-      acc.push(`  ${plus}: ${obj2[key]}`);
-    } else if (!_.has(obj2, key)) {
-      acc.push(`  ${minus}: ${obj1[key]}`);
-    } else if (obj1[key] !== obj2[key]) {
-      acc.push(`  ${minus}: ${obj1[key]}`);
-      acc.push(`  ${plus}: ${obj2[key]}`);
-    } else {
-      acc.push(`  ${common}: ${obj1[key]}`);
+  return allKeys.map((key) => {
+    if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
+      return { key, children: compare(obj1[key], obj2[key]), type: 'nested' };
     }
-    return acc;
-  }, []).join('\n');
-  return `{\n${result}\n}`;
+    if (!_.has(obj1, key)) {
+      return { key, value: obj2[key], type: 'added' };
+    }
+    if (!_.has(obj2, key)) {
+      return { key, value: obj1[key], type: 'delited' };
+    }
+    if (obj1[key] !== obj2[key]) {
+      return {
+        key, value: obj1[key], oldValue: obj2[key], type: 'changed',
+      };
+    }
+    return { key, value: obj1[key], type: 'unchanged' };
+  });
 };
 
 export default compare;
