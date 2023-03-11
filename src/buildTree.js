@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
-const compare = (obj1, obj2) => {
+const buildTree = (obj1, obj2) => {
   const allKeys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
 
   return allKeys.map((key) => {
     if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
-      return { key, children: compare(obj1[key], obj2[key]), type: 'nested' };
+      return { key, children: buildTree(obj1[key], obj2[key]), type: 'nested' };
     }
     if (!_.has(obj1, key)) {
       return { key, value: obj2[key], type: 'added' };
@@ -22,4 +22,4 @@ const compare = (obj1, obj2) => {
   });
 };
 
-export default compare;
+export default buildTree;

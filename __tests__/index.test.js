@@ -15,13 +15,49 @@ const yamlFile1 = getFixturePath('file1.yaml');
 const yamlFile2 = getFixturePath('file2.yaml');
 const ymlFile1 = getFixturePath('file1.yml');
 const ymlFile2 = getFixturePath('file2.yml');
-const result = readFile('expectedStylish.txt');
+const expectedStylish = readFile('expectedStylish.txt');
+const expectedPlain = readFile('expectedPlain.txt');
+const expectedJSON = readFile('expectedJSON.txt');
 
 test.each([
-  { a: jsonFile1, b: jsonFile2, expected: result },
-  { a: yamlFile1, b: yamlFile2, expected: result },
-  { a: ymlFile1, b: ymlFile2, expected: result },
-])('.add($a, $b)', ({ a, b, expected }) => {
-  expect(genDiff(a, b)).toBe(expected);
+  {
+    a: jsonFile1, b: jsonFile2, format: 'stylish', expected: expectedStylish,
+  },
+  {
+    a: jsonFile1, b: jsonFile2, format: 'plain', expected: expectedPlain,
+  },
+  {
+    a: jsonFile1, b: jsonFile2, format: 'json', expected: expectedJSON,
+  },
+  {
+    a: jsonFile1, b: jsonFile2, format: undefined, expected: expectedStylish,
+  },
+  {
+    a: yamlFile1, b: yamlFile2, fotmat: 'stylish', expected: expectedStylish,
+  },
+  {
+    a: yamlFile1, b: yamlFile2, fotmat: 'plain', expected: expectedPlain,
+  },
+  {
+    a: yamlFile1, b: yamlFile2, fotmat: 'json', expected: expectedJSON,
+  },
+  {
+    a: yamlFile1, b: yamlFile2, fotmat: undefined, expected: expectedStylish,
+  },
+  {
+    a: ymlFile1, b: ymlFile2, format: 'stylish', expected: expectedStylish,
+  },
+  {
+    a: ymlFile1, b: ymlFile2, format: 'plain', expected: expectedPlain,
+  },
+  {
+    a: ymlFile1, b: ymlFile2, format: 'json', expected: expectedJSON,
+  },
+  {
+    a: ymlFile1, b: ymlFile2, format: undefined, expected: expectedStylish,
+  },
+])('.add($a, $b)', ({
+  a, b, format, expected,
+}) => {
+  expect(genDiff(a, b, format)).toBe(expected);
 });
-// format??

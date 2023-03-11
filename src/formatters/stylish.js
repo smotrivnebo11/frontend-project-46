@@ -20,11 +20,12 @@ const stringify = (data) => {
 const stylish = (str) => {
   const iter = (data, depth) => {
     const entries = Object.entries(data);
-    const result = entries.flatMap(([key, value, oldValue]) => {
-      const [type] = data;
+    const result = entries.flatMap(({
+      key, value, oldValue, type,
+    }) => {
       switch (type) {
         case 'nested':
-          return stylish(data, depth + 1);
+          return iter(data, depth + 1);
         case 'added':
           return `${startIndent(depth)}+ ${key}: ${stringify(value, depth + 1)}`;
         case 'delited':
@@ -37,9 +38,9 @@ const stylish = (str) => {
           throw new Error(`Unknown type ${data.type}`);
       }
     });
-    return result;
+    return result.join('\n');
   };
-  iter(str, 1);
+  return `{\n${iter(str, 1)}\n}`;
 };
 
 export default stylish;
