@@ -1,7 +1,14 @@
 import _ from 'lodash';
 
-const startIndent = (depth) => ' '.repeat(depth * 4 - 2);
-const endIndent = (depth) => ' '.repeat(depth * 4 - 4);
+const getIndent = (defaultDepth, endIndent = 2) => {
+  const indent = ' ';
+  const indentCount = 4;
+  const defaultIndent = indent.repeat(defaultDepth * indentCount - endIndent);
+  return defaultIndent;
+};
+
+// const startIndent = (depth) => ' '.repeat(depth * 4 - 2);
+// const endIndent = (depth) => ' '.repeat(depth * 4 - 4);
 
 const stringify = (data) => {
   const iter = (innerData, depth) => {
@@ -10,30 +17,27 @@ const stringify = (data) => {
     }
 
     const entries = Object.entries(innerData);
-    const result = entries.map(([key, value]) => `${startIndent(depth)}${key}: ${iter(value, depth + 1)}`);
-    const out = ['{', ...result, `${endIndent(depth - 1)}}`].join('\n');
+    const result = entries.map(([key, value]) => `${getIndent(depth)}${key}: ${iter(value, depth + 1)}`);
+    const out = ['{', ...result, `${getIndent(depth - 1)}}`].join('\n');
     return out;
   };
   return iter(data, 1);
 };
 
 const stylish = (str) => {
-  const iter = (data, depth) => {
-    const entries = Object.entries(data);
-    const result = entries.flatMap(({
-      key, value, oldValue, type,
-    }) => {
-      switch (type) {
+  const iter = (innerData, depth) => {
+    const result = innerData.map((data) => {
+      switch (data.type) {
         case 'nested':
-          return iter(data, depth + 1);
+          return iter(data.children, depth + 1);
         case 'added':
-          return `${startIndent(depth)}+ ${key}: ${stringify(value, depth + 1)}`;
+          return `${getIndent(depth)}+ ${data.key}: ${stringify(data.value, depth + 1)}`;
         case 'delited':
-          return `${startIndent(depth)}- ${key}: ${stringify(value, depth + 1)}`;
+          return `${getIndent(depth)}- ${data.key}: ${stringify(data.value, depth + 1)}`;
         case 'changed':
-          return `${startIndent(depth)}+ ${key}: ${stringify(value, depth + 1)}/n${startIndent(depth)}- ${key}: ${stringify(oldValue, depth + 1)}`;
+          return `${getIndent(depth)}+ ${data.key}: ${stringify(data.value, depth + 1)}/n${getIndent(depth)}- ${data.key}: ${stringify(data.oldValue, depth + 1)}`;
         case 'unchanged':
-          return `${startIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`;
+          return `${getIndent(depth)}  ${data.key}: ${stringify(data.value, depth + 1)}`;
         default:
           throw new Error(`Unknown type ${data.type}`);
       }

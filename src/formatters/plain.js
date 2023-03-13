@@ -5,36 +5,36 @@ const stringify = (value) => {
     return '[complex value]';
   }
   if (typeof value === 'string') {
-    return `${value}`;
+    return `'${value}'`;
   }
   return String(value);
 };
 
-const plain = (data) => {
+const plain = (diff) => {
   const iter = (innerData, oldKey = '') => {
-    const entries = Object.entries(innerData);
-    console.log(entries);
-    const result = entries.flatMap(([key, val]) => {
-      console.log(val);
-      console.log(key);
-      switch (innerData.type) {
+    const result = innerData.map((data) => {
+      console.log(data);
+      console.log(data.key);
+      console.log(data.type);
+      console.log(data.value);
+      switch (data.type) {
         case 'nested':
-          return iter(val.value, `${oldKey}${key}.`);
+          return iter(data.children, `${oldKey}${data.key}.`);
         case 'added':
-          return `Property ${oldKey}${key} was added with value: ${stringify(val.value)}`;
+          return `Property ${oldKey}${data.key} was added with value: ${stringify(data.value)}`;
         case 'delited':
-          return `Property ${oldKey}${key} was removed`;
+          return `Property ${oldKey}${data.key} was removed`;
         case 'changed':
-          return `Property ${oldKey}${key} was updated. From ${stringify(val.oldValue)} to ${stringify(val.value)}`;
+          return `Property ${oldKey}${data.key} was updated. From ${stringify(data.oldValue)} to ${stringify(data.value)}`;
         case 'unchanged':
           return [];
         default:
-          throw new Error(`Unknown type ${key}`);
+          throw new Error(`Unknown type ${data.key}`);
       }
     });
     return result.join('\n');
   };
-  return iter(data);
+  return iter(diff);
 };
 
 export default plain;

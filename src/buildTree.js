@@ -15,7 +15,7 @@ const buildTree = (obj1, obj2) => {
     }
     if (obj1[key] !== obj2[key]) {
       return {
-        key, value: obj1[key], oldValue: obj2[key], type: 'changed',
+        key, oldValue: obj1[key], value: obj2[key], type: 'changed',
       };
     }
     return { key, value: obj1[key], type: 'unchanged' };
