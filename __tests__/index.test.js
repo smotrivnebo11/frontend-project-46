@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-const readFile = (filename) => fs.readFile(getFixturePath(filename), 'utf-8');
+const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 const jsonFile1 = getFixturePath('file1.json');
 const jsonFile2 = getFixturePath('file2.json');
@@ -56,7 +56,7 @@ test.each([
   {
     a: ymlFile1, b: ymlFile2, format: undefined, expected: expectedStylish,
   },
-])('.add($a, $b)', ({
+])('gendiff tests', ({
   a, b, format, expected,
 }) => {
   expect(genDiff(a, b, format)).toBe(expected);

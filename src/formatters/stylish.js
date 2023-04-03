@@ -1,50 +1,52 @@
 import _ from 'lodash';
 
-const getIndent = (defaultDepth, endIndent = 2) => {
-  const indent = ' ';
-  const indentCount = 4;
-  const defaultIndent = indent.repeat(defaultDepth * indentCount - endIndent);
-  return defaultIndent;
+const indent = ' '; // глобальная видимость для того, чтобы добавлять новые форматтеры
+const doubleInd = '  ';
+const indentCount = 4;
+
+// eslint-disable-next-line max-len
+const getIndent = (defaultDepth, backIndent = 2) => indent.repeat(defaultDepth * indentCount - backIndent);
+
+const stringify = (value, depth) => {
+  if (!_.isPlainObject(value)) {
+    return `${value}`;
+  }
+  const elements = Object.entries(value);
+  const result = elements.map(([key, elValue]) => `${getIndent(depth)}${doubleInd}${key}: ${stringify(elValue, depth + 1)}`);
+
+  return ['{', ...result, `${getIndent(depth, 4)}}`].join('\n');
 };
 
-// const startIndent = (depth) => ' '.repeat(depth * 4 - 2);
-// const endIndent = (depth) => ' '.repeat(depth * 4 - 4);
+const stylish = (data) => {
+  const iter = (tree, depth) => {
+    const currIndent = getIndent(depth);
 
-const stringify = (data) => {
-  const iter = (innerData, depth) => {
-    if (!_.isObject(innerData)) {
-      return `${innerData}`;
-    }
-
-    const entries = Object.entries(innerData);
-    const result = entries.map(([key, value]) => `${getIndent(depth)}${key}: ${iter(value, depth + 1)}`);
-    const out = ['{', ...result, `${getIndent(depth - 1)}}`].join('\n');
-    return out;
-  };
-  return iter(data, 1);
-};
-
-const stylish = (str) => {
-  const iter = (innerData, depth) => {
-    const result = innerData.map((data) => {
-      switch (data.type) {
-        case 'nested':
-          return iter(data.children, depth + 1);
-        case 'added':
-          return `${getIndent(depth)}+ ${data.key}: ${stringify(data.value, depth + 1)}`;
-        case 'delited':
-          return `${getIndent(depth)}- ${data.key}: ${stringify(data.value, depth + 1)}`;
-        case 'changed':
-          return `${getIndent(depth)}+ ${data.key}: ${stringify(data.value, depth + 1)}/n${getIndent(depth)}- ${data.key}: ${stringify(data.oldValue, depth + 1)}`;
-        case 'unchanged':
-          return `${getIndent(depth)}  ${data.key}: ${stringify(data.value, depth + 1)}`;
-        default:
-          throw new Error(`Unknown type ${data.type}`);
+    const stylishArr = tree.map((node) => {
+      switch (node.type) {
+        case 'nested': {
+          return `${currIndent}${doubleInd}${node.key}: {\n${iter(node.value, depth + 1)}`;
+        }
+        case 'unchanged': {
+          return `${currIndent}${doubleInd}${node.key}: ${stringify(node.value, depth + 1)}`;
+        }
+        case 'deleted': {
+          return `${currIndent}- ${node.key}: ${stringify(node.value, depth + 1)}`;
+        }
+        case 'added': {
+          return `${currIndent}+ ${node.key}: ${stringify(node.value, depth + 1)}`;
+        }
+        case 'changed': {
+          return `${currIndent}- ${node.key}: ${stringify(node.oldValue, depth + 1)}\n${currIndent}+ ${node.key}: ${stringify(node.value, depth + 1)}`;
+        }
+        default: {
+          throw new Error(`Unknown type ${node.type}`);
+        }
       }
     });
-    return result.join('\n');
+    return [...stylishArr, `${getIndent(depth, 4)}}`].join('\n');
   };
-  return `{\n${iter(str, 1)}\n}`;
+  const result = `{\n${iter(data, 1)}`;
+  return result;
 };
 
 export default stylish;
