@@ -33,13 +33,13 @@ test.each([
     a: jsonFile1, b: jsonFile2, format: undefined, expected: expectedStylish,
   },
   {
-    a: yamlFile1, b: yamlFile2, fotmat: 'stylish', expected: expectedStylish,
+    a: yamlFile1, b: yamlFile2, format: 'stylish', expected: expectedStylish,
   },
   {
-    a: yamlFile1, b: yamlFile2, fotmat: 'plain', expected: expectedPlain,
+    a: yamlFile1, b: yamlFile2, format: 'plain', expected: expectedPlain,
   },
   {
-    a: yamlFile1, b: yamlFile2, fotmat: 'json', expected: expectedJSON,
+    a: yamlFile1, b: yamlFile2, format: 'json', expected: expectedJSON,
   },
   {
     a: yamlFile1, b: yamlFile2, fotmat: undefined, expected: expectedStylish,
