@@ -15,10 +15,6 @@ const plain = (diff) => {
     const result = innerData
       .filter(({ type }) => type !== 'unchanged')
       .map((data) => {
-      // console.log(data);
-      // console.log(data.key);
-      // console.log(data.type);
-      // console.log(data.value);
         switch (data.type) {
           case 'nested':
             return iter(data.value, `${oldKey}${data.key}.`);
@@ -31,7 +27,7 @@ const plain = (diff) => {
           case 'unchanged':
             return [];
           default:
-            throw new Error(`Unknown type ${data.key}`);
+            throw new Error(`Unknown node type ${data.key}`);
         }
       });
     return result.join('\n');

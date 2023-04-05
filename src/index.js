@@ -10,15 +10,6 @@ const buildFullPath = (filepath) => path.resolve(process.cwd(), filepath);
 // абсолютный путь до файла
 
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
-  // const file1content = fs.readFileSync(filepath1, 'utf-8');
-  // const file2content = fs.readFileSync(filepath2, 'utf-8');
-  // console.log(file1content);
-  // console.log(file2content);
-  // const file1parsed = parse(file1content, getExtension(filepath1));
-  // const file2parsed = parse(file2content, getExtension(filepath2));
-  // console.log(file1parsed);
-  // console.log(file2parsed);
-
   const dataFile1 = getData(buildFullPath(filepath1)); // получаем абсолютный путь до файла1
   const dataFile2 = getData(buildFullPath(filepath2)); // получаем абсолютный путь до файла2
   const diff = buildTree(dataFile1, dataFile2); // получаем дерево различий

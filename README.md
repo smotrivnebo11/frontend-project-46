@@ -7,23 +7,25 @@
 
 [![Node CI](https://github.com/smotrivnebo11/frontend-project-46/actions/workflows/node.js.yml/badge.svg)](https://github.com/smotrivnebo11/frontend-project-46/actions/workflows/node.js.yml)
 
-NAME
+### NAME
 
        gendiff - compare files line by line
 
-SYNOPSIS
+### SYNOPSIS
 
        gendiff [option] filepath1 filepath2
 
-DESCRIPTION
+### DESCRIPTION
 
        Compares two configuration files and shows a difference.
        -f, --format <type> There are three possible formats: stylish (default), plain and json.
        Supported file extensions: json, yaml/yml.
 
-USAGE
+### USAGE
 
-      In stylish format added properties are marked with plus, removed - with minus. For updated properties old value is marked with minus, new value - with plus. Unchanged properties aren't marked at all.
+      In stylish format added properties are marked with plus, removed - with minus. 
+      For updated properties old value is marked with minus, new value - with plus. 
+      Unchanged properties aren't marked at all.
       In plain format unchanged properties are not mentioned in diff.
 
       # stylish format (default):
@@ -67,35 +69,33 @@ USAGE
         }
       ]
 
-SYSTEM REQUREMENTS:
+### SYSTEM REQUREMENTS:
 
-        ```bash
-        Node 14.x version at least
-        ```
-HOW TO INSTALL:
+      Node 14.x version at least
 
-        ```bash
-        #clone this repository on your machine with SSH key
-        $git clone git@github.com:PShorin/frontend-project-46.git
+### HOW TO INSTALL:
 
-        #go to directory where you downloaded it
-        $cd directory-name
+      # clone this repository on your machine with SSH key
+      $git clone git@github.com:PShorin/frontend-project-46.git
 
-        # run the one of these command to install all necessary dependencies
-        $make install
-        or
-        $npm ci
+      #go to directory where you downloaded it
+      $cd directory-name
 
-        # this command is responsible for linking commands from package.json to "./bin" directory
-        $npm link
+      # run the one of these command to install all necessary dependencies
+      $make install
+      or
+      $npm ci
 
-        #run utility
-        $ gendiff <filepath1> <filepath2>
+      # this command is responsible for linking commands from package.json to "./bin" directory
+      $npm link
 
-        #run help 
-        $ gendiff -h     
+      # run utility
+      $ gendiff <filepath1> <filepath2>
 
-LAUNCH EXAMPLE
+      # run help 
+      $ gendiff -h     
+
+### LAUNCH EXAMPLE
 
 1. Utility reference (-help). 
 Difference calculation between two flat JSON files.

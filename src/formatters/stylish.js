@@ -39,7 +39,7 @@ const stylish = (data) => {
           return `${currIndent}- ${node.key}: ${stringify(node.oldValue, depth + 1)}\n${currIndent}+ ${node.key}: ${stringify(node.value, depth + 1)}`;
         }
         default: {
-          throw new Error(`Unknown type ${node.type}`);
+          throw new Error(`Unknown node type ${node.type}`);
         }
       }
     });

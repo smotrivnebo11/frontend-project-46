@@ -1,13 +1,5 @@
 import yaml from 'js-yaml';
 
-// const parsers = {
-//   json: JSON.parse,
-//   yaml: yaml.load,
-//   yml: yaml.load,
-// };
-
-// export default (file, extension) = parsers[extension](file);
-
 export default (file, extension) => {
   switch (extension) {
     case 'json':
@@ -17,6 +9,6 @@ export default (file, extension) => {
     case 'yml':
       return yaml.load(file);
     default:
-      throw new Error('Unknown file format');
+      throw new Error(`Unknown extension ${extension}`);
   }
 };
